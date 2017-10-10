@@ -1,0 +1,14 @@
+---
+
+- hosts: all
+  gather_facts: true
+  roles:
+    - common
+
+- hosts: kube-master
+  roles:
+    - setup-master
+
+- hosts: kube-minions
+  roles:
+    - setup-minions

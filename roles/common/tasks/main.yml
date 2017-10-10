@@ -1,0 +1,31 @@
+---
+
+- name: setup roles
+  yum_repository:
+    name: "{{ item.name }}"
+    description: "{{ item.description }}"
+    baseurl: "{{ item.baseurl }}"
+    gpgcheck: "{{ item.gpgcheck }}"
+    state: present
+    enabled: yes
+  with_items:
+    - {{ kube_repository }}
+  register: yum_kube_repo
+
+- name: install packages
+  when: yum_kube_repo is defined
+  yum:
+    name:
+    state:
+  register: yum_package_install
+  with_items:
+    - kube_packages
+
+- name: hosts file lineinfile
+  lineinfile: 
+    dest: /etc/hosts 
+    regexp: '.*{{ item }}$'
+    line: "{{ hostvars[item].ansible_default_ipv4.address }} {{ item }}"
+    state: "present"
+  when: hostvars[item].ansible_default_ipv4.address is defined
+  with_items: play_hosts    

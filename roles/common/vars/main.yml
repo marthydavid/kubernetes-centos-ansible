@@ -1,0 +1,9 @@
+kube_repository:
+  - {name: "virt7-docker-common-release", description: "virt7-docker-common-release", baseurl: "http://cbs.centos.org/repos/virt7-docker-common-release/x86_64/os/", gpgcheck: "no"}
+
+kube_packageS:
+  - {name: "kubernetes", state: "present"}
+  - {name: "etcd", state: "present"}
+  - {name: "flannel", state: "present"}
+
+  
