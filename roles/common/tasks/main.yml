@@ -10,13 +10,12 @@
     enabled: yes
   with_items:
     - kube_repository
-  register: yum_kube_repo
 
 - name: install packages
   when: yum_kube_repo is defined
   yum:
-    name:
-    state:
+    name: "{{ item.name }}"
+    state: "{{ item.state }}"
   register: yum_package_install
   with_items:
     - kube_packages
