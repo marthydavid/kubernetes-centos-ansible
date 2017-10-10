@@ -23,7 +23,7 @@
     state: '{{ item.state }}'
     enabled: yes
   with_items:
-    - "{{ services_on_minion }}"
+    - "{{ services_on_minions }}"
 
 - name: command1
   command: 'kubectl config set-cluster default-cluster --server=http://centos7-kube01-master:8080'
