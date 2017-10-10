@@ -1,0 +1,5 @@
+kubernetes_conf:
+  - {path: '/etc/kubernetes/config', regexp: '^KUBE_LOGTOSTDERR=\s', line: 'KUBE_LOGTOSTDERR="--logtostderr=true"'}
+  - {path: '/etc/kubernetes/config', regexp: '^KUBE_LOG_LEVEL=\s', line: 'KUBE_LOG_LEVEL="--v=0"'}
+  - {path: '/etc/kubernetes/config', regexp: '^KUBE_ALLOW_PRIV=\s', line: 'KUBE_ALLOW_PRIV="--allow-privileged=false"'}
+  - {path: '/etc/kubernetes/config', regexp: '^KUBE_MASTER=\s', line: 'KUBE_MASTER="--master=http://centos7-kube01-master:8080"'}

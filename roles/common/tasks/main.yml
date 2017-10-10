@@ -21,11 +21,20 @@
   with_items:
     - kube_packages
 
-- name: hosts file lineinfile
-  lineinfile: 
-    dest: /etc/hosts 
-    regexp: '.*{{ item }}$'
-    line: "{{ hostvars[item].ansible_default_ipv4.address }} {{ item }}"
-    state: "present"
-  when: hostvars[item].ansible_default_ipv4.address is defined
-  with_items: play_hosts    
+- name: hosts file template
+  template:
+    src: hosts.j2
+    dest: /etc/hosts
+
+- name: resolv.conf file template
+  template:
+    src: resolv.conf.j2
+    dest: /etc/resolv.conf
+
+- name:
+  systemd:
+    name: "{{ item.name }}"
+    state: "{{ item.state }}"
+    enabled: "{{ item.enabled }}"
+  with_items:
+    - turn_off_services

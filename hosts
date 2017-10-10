@@ -1,4 +1,12 @@
 [kube-master]
 centos7-kube01-master.marthyhome.lab ansible_host=192.168.1.115
+[kube-minion]
 centos7-kube01-minion01.marthyhome.lab ansible_host=192.168.1.116
 centos7-kube01-minion02.marthyhome.lab ansible_host=192.168.1.117
+[kube:children]
+kube-master
+kube-minion
+[kube:vars]
+ansible_user=marth
+ansible_become_method=sudo
+ansible_become_user=root
