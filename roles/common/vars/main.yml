@@ -7,5 +7,5 @@ kube_packages:
   - {name: "flannel", state: "present"}
 
 turn_off_services:
-  - {name: "iptables-services", state: "stopped", enabled: "no"}
+#  - {name: "iptables-services", state: "stopped", enabled: "no"}
   - {name: "firewalld", state: "stopped", enabled: "no"}
