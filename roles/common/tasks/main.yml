@@ -1,6 +1,6 @@
 ---
 
-- name: isntall_yum_utils
+- name: install_yum_utils
   yum:
     name: yum-utils
     state: latest
