@@ -4,6 +4,7 @@
   yum_repository:
     name: "{{ item.name }}"
     description: "{{ item.description }}"
+    file: "{{ item.name }}"
     baseurl: "{{ item.baseurl }}"
     gpgcheck: "{{ item.gpgcheck }}"
     state: present
