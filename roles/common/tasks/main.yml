@@ -5,7 +5,7 @@
     name: yum-utils
     state: latest
 
-- name: setup_repo
+- name: install_yum_repo
   yum_repository:
     name: "{{ item.name }}"
     description: "{{ item.description }}"
