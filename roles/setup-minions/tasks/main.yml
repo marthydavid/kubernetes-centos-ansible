@@ -27,9 +27,12 @@
 
 - name: command1
   command: 'kubectl config set-cluster default-cluster --server=http://centos7-kube01-master:8080'
+  ignore_errors: true
 
 - name: command2
   command: 'kubectl config set-context default-context --cluster=default-cluster --user=default-admin'
+  ignore_errors: true
 
 - name: command3
   command: 'kubectl config use-context default-context'
+  ignore_errors: true

@@ -32,10 +32,12 @@
 
 - name: etcdctl mkdir
   command: 'etcdctl mkdir /kube-centos/network'
+  ignore_errors: true
 
 - name: etcd mk
   command: 'etcdctl mk /kube-centos/network/config "{ \"Network\": \"172.30.0.0/16\", \"SubnetLen\": 24, \"Backend\": { \"Type\": \"vxlan\" } }"'
-
+  ignore_errors: true
+  
 - name: setup flanneld
   lineinfile:
     path: '{{ item.path }}'
