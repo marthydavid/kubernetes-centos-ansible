@@ -1,5 +1,10 @@
 ---
 
+- name: isntall_yum_utils
+  yum:
+    name: yum-utils
+    state: latest
+
 - name: setup_repo
   yum_repository:
     name: "{{ item.name }}"
