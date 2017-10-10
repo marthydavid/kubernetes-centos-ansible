@@ -1,6 +1,6 @@
 ---
 
-- name: setup roles
+- name: setup_repo
   yum_repository:
     name: "{{ item.name }}"
     description: "{{ item.description }}"
