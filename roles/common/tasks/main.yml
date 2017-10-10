@@ -15,7 +15,7 @@
     state: present
     enabled: yes
   with_items:
-    - kube_repository
+    - "{{ kube_repository }}"
 
 - name: install packages
   when: yum_kube_repo is defined
@@ -24,7 +24,7 @@
     state: "{{ item.state }}"
   register: yum_package_install
   with_items:
-    - kube_packages
+    - "{{ kube_packages }}"
 
 - name: hosts file template
   template:
@@ -42,4 +42,4 @@
     state: "{{ item.state }}"
     enabled: "{{ item.enabled }}"
   with_items:
-    - turn_off_services
+    - "{{ turn_off_services }}"

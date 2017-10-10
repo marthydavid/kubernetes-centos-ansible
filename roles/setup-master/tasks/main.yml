@@ -6,5 +6,5 @@
     regexp: '{{ item.regexp }}'
     line: '{{ item.line }}'
   with_items:
-    - kubernetes_conf
+    - "{{ kubernetes_conf }}"
 
