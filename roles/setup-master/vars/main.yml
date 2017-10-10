@@ -24,7 +24,7 @@ flanneld_conf:
   - {path: '/etc/sysconfig/flanneld', regexp: '^FLANNEL_OPTIONS=', line: '#FLANNEL_OPTIONS=""'}
 
 services_on_master:
-  - {name: 'kube-apiserver', state: 'restart'}
-  - {name: 'kube-controller-manager', state: 'restart'}
-  - {name: 'kube-scheduler', state: 'restart'}
-  - {name: 'flanneld', state: 'restart'}
+  - {name: 'kube-apiserver', state: 'restarted'}
+  - {name: 'kube-controller-manager', state: 'restarted'}
+  - {name: 'kube-scheduler', state: 'restarted'}
+  - {name: 'flanneld', state: 'restarted'}
