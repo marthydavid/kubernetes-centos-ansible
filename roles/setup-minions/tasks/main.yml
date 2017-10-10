@@ -1,0 +1,10 @@
+---
+
+- name: setup kubernetes_config
+  lineinfile:
+    path: '{{ item.path }}'
+    regexp: '{{ item.regexp }}'
+    line: '{{ item.line }}'
+  with_items:
+    - "{{ kubernetes_conf }}"
+
