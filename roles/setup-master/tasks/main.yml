@@ -8,3 +8,18 @@
   with_items:
     - "{{ kubernetes_conf }}"
 
+- name: setup etcd
+  lineinfile:
+    path: '{{ item.path }}'
+    regexp: '{{ item.regexp }}'
+    line: '{{ item.line }}'
+  with_items:
+    - "{{ etcd_conf }}"
+    
+- name: setup kubernetes_apiserver
+  lineinfile:
+    path: '{{ item.path }}'
+    regexp: '{{ item.regexp }}'
+    line: '{{ item.line }}'
+  with_items:
+    - "{{ apiserv_conf }}"
