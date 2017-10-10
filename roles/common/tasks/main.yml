@@ -16,7 +16,8 @@
     enabled: yes
   with_items:
     - "{{ kube_repository }}"
-
+  register: yum_kube_repo
+  
 - name: install packages
   when: yum_kube_repo is defined
   yum:
