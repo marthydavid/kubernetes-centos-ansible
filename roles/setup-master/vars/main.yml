@@ -4,7 +4,7 @@ kubernetes_conf:
   - {path: '/etc/kubernetes/config', regexp: '^KUBE_ALLOW_PRIV=', line: 'KUBE_ALLOW_PRIV="--allow-privileged=false"'}
   - {path: '/etc/kubernetes/config', regexp: '^KUBE_MASTER=', line: 'KUBE_MASTER="--master=http://centos7-kube01-master:8080"'}
 
-etcd_confg:
+etcd_conf:
   - {path: '/etc/etcd/etcd.conf', regexp: '^ETCD_NAME=', line: 'ETCD_NAME=default'}
   - {path: '/etc/etcd/etcd.conf', regexp: '^ETCD_DATA_DIR=', line: 'ETCD_DATA_DIR="/var/lib/etcd/default.etcd"'}
   - {path: '/etc/etcd/etcd.conf', regexp: '^ETCD_LISTEN_CLIENT_URLS=', line: 'ETCD_LISTEN_CLIENT_URLS="http://0.0.0.0:2379"'}
