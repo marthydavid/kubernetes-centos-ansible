@@ -9,7 +9,7 @@
     state: present
     enabled: yes
   with_items:
-    - {{ kube_repository }}
+    - kube_repository
   register: yum_kube_repo
 
 - name: install packages
