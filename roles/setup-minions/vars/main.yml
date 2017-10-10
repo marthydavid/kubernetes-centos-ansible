@@ -16,8 +16,8 @@ flanneld_conf:
   - {path: '/etc/sysconfig/flanneld', regexp: '^FLANNEL_ETCD_PREFIX=', line: 'FLANNEL_ETCD_PREFIX="/kube-centos/network"'}
   - {path: '/etc/sysconfig/flanneld', regexp: '^FLANNEL_OPTIONS=', line: '#FLANNEL_OPTIONS=""'}
 
-services_on_master:
-  - {name: 'kube-proxy', state: 'restart'}
-  - {name: 'kubelet', state: 'restart'}
-  - {name: 'docker', state: 'restart'}
-  - {name: 'flanneld', state: 'restart'}
+services_on_minions:
+  - {name: 'kube-proxy', state: 'restarted'}
+  - {name: 'kubelet', state: 'restarted'}
+  - {name: 'docker', state: 'restarted'}
+  - {name: 'flanneld', state: 'restarted'}
