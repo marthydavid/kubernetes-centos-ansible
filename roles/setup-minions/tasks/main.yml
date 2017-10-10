@@ -8,3 +8,28 @@
   with_items:
     - "{{ kubernetes_conf }}"
 
+- name: setup kubelet_config
+  lineinfile:
+    path: '{{ item.path }}'
+    regexp: '{{ item.regexp }}'
+    line: '{{ item.line }}'
+  with_items:
+    - "{{ kubelet_conf }}"
+    - "{{ flanneld_conf }}"
+
+- name: start services
+  systemd:
+    name: '{{ item.name }}'
+    state: '{{ item.state }}'
+    enabled: yes
+  with_items:
+    - "{{ services_on_minion }}"
+
+- name: command1
+  command: 'kubectl config set-cluster default-cluster --server=http://centos7-kube01-master:8080'
+
+- name: command2
+  command: 'kubectl config set-context default-context --cluster=default-cluster --user=default-admin'
+
+- name: command3
+  command: 'kubectl config use-context default-context'

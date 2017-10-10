@@ -11,9 +11,20 @@ etcd_confg:
   - {path: '/etc/etcd/etcd.conf', regexp: '^ETCD_ADVERTISE_CLIENT_URLS=', line: 'ETCD_ADVERTISE_CLIENT_URLS="http://0.0.0.0:2379"'}
 
 apiserv_conf:
-  - {path: '/etc/kubernetes/apiserver', regexp: '', line: ''}
-  - {path: '/etc/kubernetes/apiserver', regexp: '', line: ''}
-  - {path: '/etc/kubernetes/apiserver', regexp: '', line: ''}
-  - {path: '/etc/kubernetes/apiserver', regexp: '', line: ''}
-  - {path: '/etc/kubernetes/apiserver', regexp: '', line: ''}
-  - {path: '/etc/kubernetes/apiserver', regexp: '', line: ''}
+  - {path: '/etc/kubernetes/apiserver', regexp: '^KUBE_API_ADDRESS=', line: 'KUBE_API_ADDRESS="--address=0.0.0.0"'}
+  - {path: '/etc/kubernetes/apiserver', regexp: '^KUBE_API_PORT=', line: 'KUBE_API_PORT="--port=8080"'}
+  - {path: '/etc/kubernetes/apiserver', regexp: '^KUBELET_PORT=', line: 'KUBELET_PORT="--kubelet-port=10250"'}
+  - {path: '/etc/kubernetes/apiserver', regexp: '^KUBE_ETCD_SERVERS=', line: 'KUBE_ETCD_SERVERS="--etcd-servers=http://centos7-kube01-master:2379"'}
+  - {path: '/etc/kubernetes/apiserver', regexp: '^KUBE_SERVICE_ADDRESSES=', line: 'KUBE_SERVICE_ADDRESSES="--service-cluster-ip-range=10.254.0.0/16"'}
+  - {path: '/etc/kubernetes/apiserver', regexp: '^KUBE_API_ARGS=', line: 'KUBE_API_ARGS=""'}
+
+flanneld_conf:
+  - {path: '/etc/sysconfig/flanneld', regexp: '^FLANNEL_ETCD_ENDPOINTS=', line: 'FLANNEL_ETCD_ENDPOINTS="http://centos7-kube01-master:2379"'}
+  - {path: '/etc/sysconfig/flanneld', regexp: '^FLANNEL_ETCD_PREFIX=', line: 'FLANNEL_ETCD_PREFIX="/kube-centos/network"'}
+  - {path: '/etc/sysconfig/flanneld', regexp: '^FLANNEL_OPTIONS=', line: '#FLANNEL_OPTIONS=""'}
+
+services_on_master:
+  - {name: 'kube-apiserver', state: 'restart'}
+  - {name: 'kube-controller-manager', state: 'restart'}
+  - {name: 'kube-scheduler', state: 'restart'}
+  - {name: 'flanneld', state: 'restart'}
